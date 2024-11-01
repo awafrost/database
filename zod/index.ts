@@ -4,6 +4,7 @@ import AutoCreateThreadConfig from './autoCreateThreadConfig';
 import AutoModConfig from './autoModConfig';
 import AutoPublicConfig from './autoPublicConfig';
 import EventLogConfig from './eventLogConfig';
+import FixedMessageConfig from './fixedMessageConfig';
 import Guild from './guild';
 import JoinMessageConfig from './joinMessageConfig';
 import LeaveMessageConfig from './leaveMessageConfig';
@@ -18,6 +19,7 @@ export {
   AutoModConfig,
   AutoPublicConfig,
   EventLogConfig,
+  FixedMessageConfig,
   Guild,
   JoinMessageConfig,
   LeaveMessageConfig,
