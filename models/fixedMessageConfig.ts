@@ -14,4 +14,4 @@ const fixedMessageSchema = new Schema<z.infer<typeof zodSchema>>({
   last: Schema.Types.String,
 });
 
-export default createModel('joinMessageConfig', fixedMessageSchema);
+export default createModel('fixedMessageConfig', fixedMessageSchema);
