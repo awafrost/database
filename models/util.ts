@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { type Model, Schema, model, models } from 'mongoose';
 import type { z } from 'zod';
 import type { MessageOptions } from '../zod/util';
 
@@ -42,3 +42,9 @@ export const messageOptionSchema = new Schema<z.infer<typeof MessageOptions>>({
     },
   ],
 });
+
+export function createModel<T, U = unknown>(name: string, schema: Schema<T>) {
+  return models?.[name]
+    ? (models[name] as Model<T, object, U>)
+    : model<T, Model<T, object, U>>(name, schema);
+}

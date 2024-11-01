@@ -1,10 +1,9 @@
-import mongoose, { type Model } from 'mongoose';
+import { Schema } from 'mongoose';
 import type { z } from 'zod';
 import { LeaveMessageConfig } from '../zod';
 import { BaseConfigSchema } from '../zod/util';
-import { guildId, messageOptionSchema } from './util';
+import { createModel, guildId, messageOptionSchema } from './util';
 
-const { Schema, model, models } = mongoose;
 const zodSchema = BaseConfigSchema.and(LeaveMessageConfig);
 
 const leaveMessageSchema = new Schema<z.infer<typeof zodSchema>>({
@@ -15,6 +14,4 @@ const leaveMessageSchema = new Schema<z.infer<typeof zodSchema>>({
   message: messageOptionSchema,
 });
 
-export default models?.leaveMessageConfig
-  ? (models.leaveMessageConfig as Model<z.infer<typeof zodSchema>>)
-  : model('leaveMessageConfig', leaveMessageSchema);
+export default createModel('leaveMessageConfig', leaveMessageSchema);

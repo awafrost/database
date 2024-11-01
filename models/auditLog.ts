@@ -1,8 +1,7 @@
-import mongoose, { type Model } from 'mongoose';
+import { Schema } from 'mongoose';
 import type { z } from 'zod';
 import type { AuditLog } from '../zod';
-
-const { Schema, model, models } = mongoose;
+import { createModel } from './util';
 
 const AuditLogSchema = new Schema<z.infer<typeof AuditLog>>({
   guildId: {
@@ -16,6 +15,4 @@ const AuditLogSchema = new Schema<z.infer<typeof AuditLog>>({
   createAt: { type: Schema.Types.Date, default: Date.now },
 });
 
-export default models?.auditLog
-  ? (models.auditLog as Model<typeof AuditLog>)
-  : model('auditLog', AuditLogSchema);
+export default createModel('auditLog', AuditLogSchema);

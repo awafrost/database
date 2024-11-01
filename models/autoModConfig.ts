@@ -1,10 +1,9 @@
-import mongoose, { type Model } from 'mongoose';
+import { Schema } from 'mongoose';
 import type { z } from 'zod';
 import { AutoModConfig } from '../zod';
 import { BaseConfigSchema } from '../zod/util';
-import { guildId } from './util';
+import { createModel, guildId } from './util';
 
-const { Schema, model, models } = mongoose;
 const zodSchema = BaseConfigSchema.and(AutoModConfig);
 
 const autoModSchema = new Schema<z.infer<typeof zodSchema>>({
@@ -28,6 +27,4 @@ const autoModSchema = new Schema<z.infer<typeof zodSchema>>({
   },
 });
 
-export default models?.autoModConfig
-  ? (models.autoModConfig as Model<z.infer<typeof zodSchema>>)
-  : model('autoModConfig', autoModSchema);
+export default createModel('autoModConfig', autoModSchema);

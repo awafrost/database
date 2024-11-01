@@ -1,10 +1,9 @@
-import mongoose, { type Model } from 'mongoose';
+import { Schema } from 'mongoose';
 import type { z } from 'zod';
 import { ReportConfig } from '../zod';
 import { BaseConfigSchema } from '../zod/util';
-import { guildId } from './util';
+import { createModel, guildId } from './util';
 
-const { Schema, model, models } = mongoose;
 const zodSchema = BaseConfigSchema.and(ReportConfig);
 
 const reportSchema = new Schema<z.infer<typeof zodSchema>>({
@@ -18,6 +17,4 @@ const reportSchema = new Schema<z.infer<typeof zodSchema>>({
   },
 });
 
-export default models?.reportConfig
-  ? (models.reportConfig as Model<z.infer<typeof zodSchema>>)
-  : model('reportConfig', reportSchema);
+export default createModel('reportConfig', reportSchema);

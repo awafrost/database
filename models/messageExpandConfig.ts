@@ -1,11 +1,10 @@
 import { ChannelType } from 'discord-api-types/v10';
-import mongoose, { type Model } from 'mongoose';
+import { Schema } from 'mongoose';
 import type { z } from 'zod';
 import { MessageExpandConfig } from '../zod';
 import { BaseConfigSchema } from '../zod/util';
-import { guildId } from './util';
+import { createModel, guildId } from './util';
 
-const { Schema, model, models } = mongoose;
 const zodSchema = BaseConfigSchema.and(MessageExpandConfig);
 
 const messageExpandSchema = new Schema<z.infer<typeof zodSchema>>({
@@ -19,6 +18,4 @@ const messageExpandSchema = new Schema<z.infer<typeof zodSchema>>({
   },
 });
 
-export default models?.messageExpandConfig
-  ? (models.messageExpandConfig as Model<z.infer<typeof zodSchema>>)
-  : model('messageExpandConfig', messageExpandSchema);
+export default createModel('messageExpandConfig', messageExpandSchema);
