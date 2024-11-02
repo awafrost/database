@@ -1,6 +1,7 @@
 import AuditLog from './auditLog';
 import AutoChangeVerifyLevelConfig from './autoChangeVerifyLevelConfig';
 import AutoCreateThreadConfig from './autoCreateThreadConfig';
+import AutoCreateVoiceConfig from './autoCreateVoiceConfig';
 import AutoModConfig from './autoModConfig';
 import AutoPublicConfig from './autoPublicConfig';
 import EventLogConfig from './eventLogConfig';
@@ -16,6 +17,7 @@ export {
   AuditLog,
   AutoChangeVerifyLevelConfig,
   AutoCreateThreadConfig,
+  AutoCreateVoiceConfig,
   AutoModConfig,
   AutoPublicConfig,
   EventLogConfig,
